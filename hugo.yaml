@@ -1,0 +1,48 @@
+baseURL: "https://katalinatoth.github.io/"
+title: "Katalina Toth"
+languageCode: en-us
+
+params:
+  description: "Pre-Doctoral Research Fellow, Institute for Quantitative Social Science, Harvard University"
+  author: "Katalina Toth"
+  email: "ktoth@iq.harvard.edu"
+  role: "Pre-Doctoral Research Fellow"
+  affiliation: "Institute for Quantitative Social Science, Harvard University"
+  advisor: "Gary King"
+  tagline: "I study misinformation, public opinion, and the politics of health."
+  photo: "/images/photo.jpg"
+  interests:
+    - "Political communication"
+    - "Misinformation & conspiracy theories"
+    - "Public opinion & survey methodology"
+    - "Health policy"
+    - "Stigma & mental health"
+
+menu:
+  main:
+    - name: About
+      url: "/#about"
+      weight: 10
+    - name: Research
+      url: "/#research"
+      weight: 20
+    - name: Teaching
+      url: "/#teaching"
+      weight: 30
+    - name: Writing
+      url: "/#writing"
+      weight: 40
+    - name: Art
+      url: "/#art"
+      weight: 50
+    - name: CV
+      url: "/files/cv.pdf"
+      weight: 60
+    - name: Contact
+      url: "/#contact"
+      weight: 70
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true

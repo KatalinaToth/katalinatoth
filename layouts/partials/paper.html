@@ -1,0 +1,15 @@
+{{/* Renders a single paper row. Receives a papers.yaml entry as context. */}}
+{{ $href := "" }}
+{{ if .link }}{{ $href = .link }}{{ else if .pdf }}{{ $href = .pdf | relURL }}{{ end }}
+<li class="paper-item{{ if .job_market_paper }} jmp{{ end }}">
+  {{ if .job_market_paper }}<p class="jmp-label">Job Market Paper</p>{{ end }}
+  <p class="paper-meta">{{ delimit .authors ", " }} <span class="paper-year">({{ .year }})</span></p>
+  {{ if $href }}
+  <a class="paper-title" href="{{ $href }}"{{ if .link }} target="_blank" rel="noopener"{{ end }}>{{ .title }}</a>
+  {{ else }}
+  <span class="paper-title-static">{{ .title }}</span>
+  {{ end }}
+  {{ if ne (lower .status) "published" }}<span class="badge">{{ .status }}</span>{{ end }}
+  {{ with .venue }}<p class="paper-venue">{{ . }}</p>{{ end }}
+  {{ if and .job_market_paper .abstract }}<p class="paper-abstract">{{ .abstract }}</p>{{ end }}
+</li>

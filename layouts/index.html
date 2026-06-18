@@ -1,0 +1,157 @@
+{{ define "main" }}
+
+{{/* ---------- HERO ---------- */}}
+<header class="hero" id="top">
+  <div class="hero-grid">
+    {{ with site.Params.photo }}
+    <img class="hero-photo" src="{{ . | relURL }}" alt="Portrait of {{ site.Params.author }}" width="180" height="180">
+    {{ end }}
+    <div class="hero-text">
+      <h1 class="hero-name">{{ site.Title }}</h1>
+      <p class="hero-role">{{ site.Params.role }}</p>
+      <p class="hero-affil">{{ site.Params.affiliation }}</p>
+      {{ with site.Params.advisor }}<p class="hero-advisor">Advised by <a href="https://gking.harvard.edu/" target="_blank" rel="noopener">{{ . }}</a></p>{{ end }}
+      <p class="hero-tagline">{{ site.Params.tagline }}</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="{{ "/files/cv.pdf" | relURL }}" target="_blank" rel="noopener">Curriculum Vitae</a>
+        <a class="btn" href="mailto:{{ site.Params.email }}">Email</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+{{/* ---------- ABOUT ---------- */}}
+<section class="section" id="about" aria-labelledby="about-h">
+  <h2 class="section-title" id="about-h">About</h2>
+  <div class="prose">
+    {{ .Content }}
+  </div>
+  {{ with site.Params.interests }}
+  <ul class="interests" aria-label="Research interests">
+    {{ range . }}<li>{{ . }}</li>{{ end }}
+  </ul>
+  {{ end }}
+</section>
+
+{{/* ---------- RESEARCH ---------- */}}
+<section class="section" id="research" aria-labelledby="research-h">
+  <h2 class="section-title" id="research-h">Research</h2>
+
+  {{ $papers := hugo.Data.papers }}
+  {{ $working := where $papers "status" "not in" (slice "published" "accepted") }}
+  {{ $published := where $papers "status" "in" (slice "published" "accepted") }}
+
+  {{ if $working }}
+  <h3 class="sub-title">Working Papers</h3>
+  <ol class="paper-list">
+    {{ range sort $working "year" "desc" }}{{ partial "paper.html" . }}{{ end }}
+  </ol>
+  {{ end }}
+
+  {{ if $published }}
+  <h3 class="sub-title">Publications</h3>
+  <ol class="paper-list">
+    {{ range sort $published "year" "desc" }}{{ partial "paper.html" . }}{{ end }}
+  </ol>
+  {{ end }}
+
+  {{ with hugo.Data.presentations }}
+  <h3 class="sub-title">Conference Presentations</h3>
+  <ol class="paper-list">
+    {{ range sort . "date" "desc" }}
+    <li class="paper-item">
+      <p class="paper-meta">{{ delimit .authors ", " }} <span class="paper-year">({{ .date }})</span></p>
+      <p class="paper-title-static">{{ .title }}</p>
+      <p class="paper-venue">{{ .venue }}</p>
+    </li>
+    {{ end }}
+  </ol>
+  {{ end }}
+
+  {{ with hugo.Data.research }}
+  <h3 class="sub-title">Research Experience</h3>
+  <ul class="exp-list">
+    {{ range . }}
+    <li class="exp-item">
+      <div class="exp-head">
+        <span class="exp-role">{{ .role }}</span>
+        <span class="exp-years">{{ .years }}</span>
+      </div>
+      <p class="exp-lab">{{ .lab }}{{ with .advisor }} · {{ . }}{{ end }}</p>
+      <p class="exp-desc">{{ .description }}</p>
+    </li>
+    {{ end }}
+  </ul>
+  {{ end }}
+</section>
+
+{{/* ---------- TEACHING ---------- */}}
+{{ with hugo.Data.teaching }}
+<section class="section" id="teaching" aria-labelledby="teaching-h">
+  <h2 class="section-title" id="teaching-h">Teaching</h2>
+  <ul class="teach-list">
+    {{ range . }}
+    <li class="teach-item">
+      <div class="teach-main">
+        <span class="teach-course">{{ .course }}</span>
+        <span class="teach-term">{{ .term }}</span>
+      </div>
+      <p class="teach-meta">{{ .role }}, {{ .institution }}{{ with .instructor }} · {{ . }}{{ end }}</p>
+    </li>
+    {{ end }}
+  </ul>
+</section>
+{{ end }}
+
+{{/* ---------- WRITING ---------- */}}
+{{ with hugo.Data.writing }}
+<section class="section" id="writing" aria-labelledby="writing-h">
+  <h2 class="section-title" id="writing-h">Writing</h2>
+  <ul class="writing-list">
+    {{ range sort . "date" "desc" }}
+    <li class="writing-item">
+      <a class="writing-title" href="{{ .url }}" target="_blank" rel="noopener">{{ .title }}</a>
+      <p class="writing-meta">{{ .venue }}{{ with .date }} · {{ . }}{{ end }}</p>
+    </li>
+    {{ end }}
+  </ul>
+</section>
+{{ end }}
+
+{{/* ---------- AWARDS ---------- */}}
+{{ with hugo.Data.awards }}
+<section class="section" id="awards" aria-labelledby="awards-h">
+  <h2 class="section-title" id="awards-h">Awards &amp; Honors</h2>
+  <ul class="award-list">
+    {{ range . }}
+    <li class="award-item">
+      <span class="award-year">{{ .year }}</span>
+      <span class="award-name">{{ .name }}</span>
+    </li>
+    {{ end }}
+  </ul>
+</section>
+{{ end }}
+
+{{/* ---------- ART ---------- */}}
+<section class="section" id="art" aria-labelledby="art-h">
+  <h2 class="section-title" id="art-h">Art</h2>
+  <div class="prose">
+    <p>Outside of research, I design and make things — fashion built from recycled textiles, and ceramics. For a 2019 show I designed and sewed all 27 garments from reclaimed fabric to draw attention to the environmental and human costs of fast fashion.</p>
+    <p class="art-note">A gallery of recent fashion designs and ceramic work is coming soon.</p>
+  </div>
+</section>
+
+{{/* ---------- CONTACT ---------- */}}
+<section class="section" id="contact" aria-labelledby="contact-h">
+  <h2 class="section-title" id="contact-h">Contact</h2>
+  <div class="prose">
+    <p>I'm happy to hear from researchers, students, and collaborators.</p>
+    <p>
+      <a href="mailto:{{ site.Params.email }}">{{ site.Params.email }}</a><br>
+      {{ site.Params.affiliation }}
+    </p>
+  </div>
+</section>
+
+{{ end }}
