@@ -1,4 +1,4 @@
-baseURL: "https://katalinatoth.github.io/"
+baseURL: "https://katalinatoth.github.io/katalinatoth/"
 title: "Katalina Toth"
 languageCode: en-us
 
@@ -9,7 +9,7 @@ params:
   role: "Pre-Doctoral Research Fellow"
   affiliation: "Institute for Quantitative Social Science, Harvard University"
   advisor: "Gary King"
-  photo: "/images/photo.jpg"
+  photo: "images/photo.jpg"
   interests:
     - "Political communication"
     - "Misinformation & conspiracy theories"
@@ -20,25 +20,25 @@ params:
 menu:
   main:
     - name: About
-      url: "/#about"
+      url: "#about"
       weight: 10
     - name: Research
-      url: "/#research"
+      url: "#research"
       weight: 20
     - name: Teaching
-      url: "/#teaching"
+      url: "#teaching"
       weight: 30
     - name: Writing
-      url: "/#writing"
+      url: "#writing"
       weight: 40
     - name: Art
-      url: "/#art"
+      url: "#art"
       weight: 50
     - name: CV
-      url: "/files/cv.pdf"
+      url: "files/cv.pdf"
       weight: 60
     - name: Contact
-      url: "/#contact"
+      url: "#contact"
       weight: 70
 
 markup:
