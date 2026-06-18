@@ -2,7 +2,7 @@
 title: "Katalina Toth"
 ---
 
-I am a Pre-Doctoral Research Fellow at Harvard's Institute for Quantitative Social Science, where I work with Gary King on projects studying survey instability and the spread of conspiracy theories on social media.
+I am a Pre-Doctoral Research Fellow at Harvard's Institute for Quantitative Social Science, where I work with Gary King on projects examining survey instability and the spread of conspiracy theories on social media.
 
 My research centers on health policy, social determinants of health, and methodology. I am especially interested in how scientists and politicians communicate with the public, and how those conversations impact physical and mental health, particularly for vulnerable communities.
 

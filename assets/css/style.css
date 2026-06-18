@@ -332,6 +332,52 @@ a:hover { color: var(--accent-hover); text-decoration: underline; }
 /* ---------- ART ---------- */
 .art-note { color: var(--muted); font-style: italic; }
 
+.art-subtitle {
+  font-family: var(--serif);
+  font-size: .82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  color: var(--muted);
+  margin: 2rem 0 1rem;
+}
+.art-subtitle:first-of-type { margin-top: 1.75rem; }
+
+.gallery {
+  column-count: 3;
+  column-gap: .7rem;
+}
+.gallery--ceramics { column-count: 3; }
+
+.gallery-item {
+  display: block;
+  margin: 0 0 .7rem;
+  break-inside: avoid;
+  border-radius: 5px;
+  overflow: hidden;
+  background: var(--surface);
+  box-shadow: 0 1px 4px rgba(43, 39, 36, .10);
+  transition: transform .28s ease, box-shadow .28s ease, filter .28s ease;
+}
+.gallery-item img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.gallery-item:hover,
+.gallery-item:focus-visible {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 26px rgba(43, 39, 36, .20);
+  filter: saturate(1.05);
+  outline: none;
+}
+
+@media (max-width: 640px) {
+  .gallery,
+  .gallery--ceramics { column-count: 2; column-gap: .5rem; }
+  .gallery-item { margin-bottom: .5rem; }
+}
+
 /* ---------- FOOTER ---------- */
 .site-footer {
   border-top: 1px solid var(--border);

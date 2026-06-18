@@ -9,7 +9,6 @@ params:
   role: "Pre-Doctoral Research Fellow"
   affiliation: "Institute for Quantitative Social Science, Harvard University"
   advisor: "Gary King"
-  tagline: "I study misinformation, public opinion, and the politics of health."
   photo: "/images/photo.jpg"
   interests:
     - "Political communication"

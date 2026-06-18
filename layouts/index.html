@@ -11,7 +11,7 @@
       <p class="hero-role">{{ site.Params.role }}</p>
       <p class="hero-affil">{{ site.Params.affiliation }}</p>
       {{ with site.Params.advisor }}<p class="hero-advisor">Advised by <a href="https://gking.harvard.edu/" target="_blank" rel="noopener">{{ . }}</a></p>{{ end }}
-      <p class="hero-tagline">{{ site.Params.tagline }}</p>
+      {{ with site.Params.tagline }}<p class="hero-tagline">{{ . }}</p>{{ end }}
       <div class="hero-actions">
         <a class="btn btn-primary" href="{{ "/files/cv.pdf" | relURL }}" target="_blank" rel="noopener">Curriculum Vitae</a>
         <a class="btn" href="mailto:{{ site.Params.email }}">Email</a>
@@ -121,7 +121,7 @@
 {{/* ---------- AWARDS ---------- */}}
 {{ with hugo.Data.awards }}
 <section class="section" id="awards" aria-labelledby="awards-h">
-  <h2 class="section-title" id="awards-h">Awards &amp; Honors</h2>
+  <h2 class="section-title" id="awards-h">Awards</h2>
   <ul class="award-list">
     {{ range . }}
     <li class="award-item">
@@ -137,16 +137,34 @@
 <section class="section" id="art" aria-labelledby="art-h">
   <h2 class="section-title" id="art-h">Art</h2>
   <div class="prose">
-    <p>Outside of research, I design and make things — fashion built from recycled textiles, and ceramics. For a 2019 show I designed and sewed all 27 garments from reclaimed fabric to draw attention to the environmental and human costs of fast fashion.</p>
-    <p class="art-note">A gallery of recent fashion designs and ceramic work is coming soon.</p>
+    <p>A gallery of selected works, including images from a 2019 show where I designed and sewed 27 garments from reclaimed fabric to draw attention to the environmental and human costs of fast fashion.</p>
   </div>
+
+  <h3 class="art-subtitle">Fashion</h3>
+  <div class="gallery">
+    {{ range slice "fashion-01" "fashion-02" "fashion-03" "fashion-04" "fashion-05" "fashion-06" "fashion-07" }}
+    <a class="gallery-item" href="{{ printf "/images/art/%s.jpg" . | relURL }}" target="_blank" rel="noopener" aria-label="Runway garment made from reclaimed fabric (opens full image)">
+      <img src="{{ printf "/images/art/%s.jpg" . | relURL }}" alt="Garment from the 2019 reclaimed-fabric runway show" loading="lazy" decoding="async">
+    </a>
+    {{ end }}
+  </div>
+
+  <h3 class="art-subtitle">Ceramics</h3>
+  <div class="gallery gallery--ceramics">
+    {{ range slice "ceramics-01" "ceramics-04" "ceramics-05" }}
+    <a class="gallery-item" href="{{ printf "/images/art/%s.jpg" . | relURL }}" target="_blank" rel="noopener" aria-label="Handmade ceramic piece (opens full image)">
+      <img src="{{ printf "/images/art/%s.jpg" . | relURL }}" alt="Handmade ceramic piece" loading="lazy" decoding="async">
+    </a>
+    {{ end }}
+  </div>
+
+  <p class="art-note">More images coming soon.</p>
 </section>
 
 {{/* ---------- CONTACT ---------- */}}
 <section class="section" id="contact" aria-labelledby="contact-h">
   <h2 class="section-title" id="contact-h">Contact</h2>
   <div class="prose">
-    <p>I'm happy to hear from researchers, students, and collaborators.</p>
     <p>
       <a href="mailto:{{ site.Params.email }}">{{ site.Params.email }}</a><br>
       {{ site.Params.affiliation }}
